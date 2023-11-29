@@ -5,8 +5,8 @@ import 'package:stripe_checkout/stripe_checkout.dart';
 
 class StripeService{
 
-  static String secretKey = "sk_test_RrncwA2T2wFHZr60x1cXIA09003k3GlFCw";
-  static String publishableKey = "pk_test_9yXR1n1GNmEOIJEnjUMvT9xj00yOY8CsxN";
+  static String secretKey = "sk_test_xxxx";
+  static String publishableKey = "pk_test_xxxxx";
 
 
   static Future<dynamic> createCheckoutSession(List<dynamic> productItems,totalAmount) async{
