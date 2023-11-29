@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_payment_methods/stripe_service.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey="pk_test_9yXR1n1GNmEOIJEnjUMvT9xj00yOY8CsxN";
+  Stripe.merchantIdentifier = 'Test';
+  await Stripe.instance.applySettings();
   runApp(const MyApp());
 }
 
@@ -45,31 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: TextButton(
               onPressed: () async{
-                var items  = [
-                  {
-                    "productPrice":5,
-                    "productName":"Apple",
-                    "qty":5
-                  },
-                  {
-                    "productPrice":5,
-                    "productName":"Orange",
-                    "qty":10
-                  },
-                ];
-                
-                await StripeService.stripePaymentCheckout(items, 500, context,
-                  mounted,
-                  onSuccess: (){
-                    print('SUCCESS');
-                  },
-                  onCancel: (){
-                    print('CANCEL');
-                  },
-                  onError: (e){
-                    print('ERROR: '+e.toString());
-                  }
-                );
+                StripeService.makePayment();
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.teal,
